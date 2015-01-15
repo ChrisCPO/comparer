@@ -23,7 +23,7 @@ class Compare
   end
 end
 
-ARGV[0] ||= ''
+ARGV[0] ||= ""
 users = ARGV[0].split(",")
 compare = Compare.new(users)
 compare.placement
