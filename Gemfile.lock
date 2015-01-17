@@ -2,9 +2,21 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
+    coderay (1.1.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
+    method_source (0.8.2)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
     safe_yaml (1.0.4)
+    slop (3.6.0)
     vcr (2.9.3)
     webmock (1.20.4)
       addressable (>= 2.3.6)
@@ -14,5 +26,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  pry
+  pry-nav
+  pry-remote
   vcr
   webmock
