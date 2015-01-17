@@ -1,13 +1,11 @@
-require "net/http"
-require "json"
+require_relative "data_retriever"
 
 class User
   attr_accessor :hash, :points
 
   def initialize(name)
     @hash = {}
-    uri = URI("https://api.github.com/users/" + name)
-    @hash = JSON.parse(Net::HTTP.get(uri))
+    @hash = DataRetriever.new(name).get_data
     @points = points_base
   end
 

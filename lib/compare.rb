@@ -17,9 +17,7 @@ class Compare
   end
 
   def sort_by_points
-    users.sort do |user_1, user_2|
-      user_2.points <=> user_1.points
-    end
+    users.sort_by(&:points).reverse
   end
 end
 
