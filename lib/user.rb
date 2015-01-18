@@ -2,7 +2,7 @@ require_relative "profile_calculator"
 require_relative "repo_calculator"
 
 class User
-  attr_reader :name, :points
+  attr_reader :name, :points, :repo_score, :profile_score
 
   def initialize(name)
     @name = name
@@ -16,10 +16,10 @@ class User
   end
 
   def repo_points
-    RepoCalculator.new(name).points
+    @repo_score = RepoCalculator.new(name).points
   end
 
   def profile_points
-    ProfileCalculator.new(name).points
+    @profile_score = ProfileCalculator.new(name).points
   end
 end
