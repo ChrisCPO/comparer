@@ -1,4 +1,5 @@
 require_relative "data_retriever"
+require_relative "time_calculator"
 require "pry"
 
 class ProfileCalculator
@@ -32,6 +33,7 @@ class ProfileCalculator
     @points += hash["public_repos"]
     @points += hash["followers"]
     @points += hash["public_gists"]
+    @points += TimeCalculator.new(hash).points
     @points - hash["id"].to_s.length
   end
 
