@@ -1,24 +1,25 @@
-require_relative "data_retriever"
 require_relative "profile_calculator"
+require_relative "repo_calculator"
 
 class User
-  attr_accessor :hash, :points
+  attr_reader :name, :points
 
   def initialize(name)
-    @hash = {}
-    @hash = DataRetriever.new(name).get_data
+    @name = name
     assign_points
   end
 
+  private
+
   def assign_points
-    points_calc = ProfileCalculator.new(hash)
-    @points = points_base + points_calc.points
+    @points = repo_points + profile_points
   end
 
-  def points_base
-    points = hash["public_repos"]
-    points += hash["followers"]
-    points += hash["public_gists"]
-    points - @hash["id"].to_s.length
+  def repo_points
+    RepoCalculator.new(name).points
+  end
+
+  def profile_points
+    ProfileCalculator.new(name).points
   end
 end

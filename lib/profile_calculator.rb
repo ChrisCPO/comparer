@@ -1,17 +1,22 @@
+require_relative "data_retriever"
 require "pry"
 
 class ProfileCalculator
-  attr_reader :hash, :points
+  attr_accessor :points
+  attr_reader :hash
 
   ONE_COUNT = 1
   ZERO_COUNT = 0
   COMPLETE_PROFILE_COUNT = 5
 
-  def initialize(hash)
+  def initialize(name)
     @points = 0
-    @hash = hash
+    @hash = DataRetriever.new(name, filename: name).get_data
+    base_points
     calculate
   end
+
+  private
 
   def calculate
     count = 0
@@ -23,7 +28,12 @@ class ProfileCalculator
     profile_is_complete?(count)
   end
 
-  private
+  def base_points
+    @points += hash["public_repos"]
+    @points += hash["followers"]
+    @points += hash["public_gists"]
+    @points - hash["id"].to_s.length
+  end
 
   def profile_is_complete?(count)
     if count == COMPLETE_PROFILE_COUNT
