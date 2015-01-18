@@ -32,11 +32,11 @@ class ProfileCalculator
   end
 
   def profile_item_is_complete?(string, hash)
-    if hash[string] != empty_string
+    if hash[string] == nil || hash[string].to_s.length == 0
+      ZERO_COUNT
+    else
       @points += hash[:points]
       ONE_COUNT
-    else
-      ZERO_COUNT
     end
   end
 
