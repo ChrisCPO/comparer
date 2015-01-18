@@ -26,13 +26,13 @@ class ProfileCalculator
   private
 
   def profile_is_complete?(count)
-    if count = COMPLETE_PROFILE_COUNT
+    if count == COMPLETE_PROFILE_COUNT
       @points += 2
     end
   end
 
   def profile_item_is_complete?(string, hash)
-    if hash[string] != nil || empty_string
+    if hash[string] != empty_string
       @points += hash[:points]
       ONE_COUNT
     else
