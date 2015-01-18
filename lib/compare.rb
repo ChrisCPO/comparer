@@ -11,7 +11,9 @@ class Compare
   def placement
     @users = sort_by_points
     users.each do |user|
-      puts "#{user.name} points:#{user.points}"
+      puts "#{user.name} total points:#{user.points}"
+      puts "---- profile score: #{user.profile_score}"
+      puts "---- repo    score: #{user.repo_score}"
     end
     nil
   end
