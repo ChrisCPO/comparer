@@ -2,8 +2,8 @@
 See who has a better github profile, rank you and your friends
 
 
-* Install
+# Install
 
-fork it 
+* fork it 
  
-then run ruby compare.rb github_name,githubname...
+* then run ruby compare.rb github_name,githubname...
