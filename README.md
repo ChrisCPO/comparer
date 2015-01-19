@@ -1,4 +1,4 @@
-# comparer
+# Comparer
 See who has a better github profile, rank you and your friends
 
 
