@@ -1,5 +1,6 @@
 class TimeCalculator
-  attr_reader :hash, :points
+  attr_accessor :points
+  attr_reader :hash
 
   POINTS_PER_YEAR = 5
 
@@ -12,6 +13,6 @@ class TimeCalculator
   def calculate
     created_year = Time.parse(hash["created_at"]).year
     current_year = Time.new.year
-    @points = (current_year - created_year) * POINTS_PER_YEAR
+    self.points = (current_year - created_year) * POINTS_PER_YEAR
   end
 end

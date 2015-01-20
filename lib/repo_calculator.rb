@@ -2,7 +2,8 @@ require_relative "data_retriever"
 require "pry"
 
 class RepoCalculator
-  attr_reader :points, :hash
+  attr_accessor :points
+  attr_reader :hash
 
   def initialize(name)
     @points = 0
@@ -17,9 +18,9 @@ class RepoCalculator
 
   def calculate
     hash.each do |repo|
-      @points += repo["stargazers_count"]
-      @points += repo["watchers_count"]
-      @points += repo["forks_count"]
+      self.points += repo["stargazers_count"]
+      self.points += repo["watchers_count"]
+      self.points += repo["forks_count"]
     end
   end
 end

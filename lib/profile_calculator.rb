@@ -10,6 +10,13 @@ class ProfileCalculator
   ZERO_COUNT = 0
   COMPLETE_PROFILE_COUNT = 5
 
+  PROFILE_INFO = [["bio", points: 1],
+                  ["blog", points: 3],
+                  ["location", points: 1],
+                  ["email", points: 2],
+                  ["name", points: 1]
+                 ]
+
   def initialize(name)
     @points = 0
     @hash = DataRetriever.new(name, filename: name).get_data
@@ -21,25 +28,23 @@ class ProfileCalculator
 
   def calculate
     count = 0
-    count += profile_item_is_complete?("bio", points: 1)
-    count += profile_item_is_complete?("blog", points: 3)
-    count += profile_item_is_complete?("location", points: 1)
-    count += profile_item_is_complete?("email", points: 2)
-    count += profile_item_is_complete?("name", points: 1)
+    PROFILE_INFO.each do |item|
+      count += profile_item_is_complete?(item[0],item[1])
+    end
     profile_is_complete?(count)
   end
 
   def base_points
-    @points += hash["public_repos"]
-    @points += hash["followers"]
-    @points += hash["public_gists"]
-    @points += TimeCalculator.new(hash).points
-    @points - hash["id"].to_s.length
+    self.points += hash["public_repos"]
+    self.points += hash["followers"]
+    self.points += hash["public_gists"]
+    self.points += TimeCalculator.new(hash).points
+    self.points - hash["id"].to_s.length
   end
 
   def profile_is_complete?(count)
     if count == COMPLETE_PROFILE_COUNT
-      @points += 2
+      self.points += 2
     end
   end
 
@@ -47,7 +52,7 @@ class ProfileCalculator
     if hash[string] == nil || hash[string].to_s.length == 0
       ZERO_COUNT
     else
-      @points += hash[:points]
+      self.points += hash[:points]
       ONE_COUNT
     end
   end
