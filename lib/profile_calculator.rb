@@ -56,8 +56,4 @@ class ProfileCalculator
       ONE_COUNT
     end
   end
-
-  def empty_string
-    ""
-  end
 end
